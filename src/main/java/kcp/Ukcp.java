@@ -117,8 +117,8 @@ public class Ukcp {
 
   public void input(ByteBuf data, long current) throws IOException {
     //lastRecieveTime = System.currentTimeMillis();
-    Snmp.snmp.InPkts.increment();
-    Snmp.snmp.InBytes.add(data.readableBytes());
+    Snmp.snmp.incomingPackets.increment();
+    Snmp.snmp.incomingBytes.add(data.readableBytes());
 
     if (fecDecode != null) {
       FecPacket fecPacket = FecPacket.newFecPacket(data);

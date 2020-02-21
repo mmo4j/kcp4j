@@ -9,58 +9,84 @@ import java.util.concurrent.atomic.LongAdder;
 public class Snmp {
 
   public static volatile Snmp snmp = new Snmp();
+
   // bytes sent from upper level
-  public LongAdder BytesSent = new LongAdder();
+  public LongAdder bytesSent = new LongAdder();
+
   // bytes received to upper level
-  public LongAdder BytesReceived = new LongAdder();
+  public LongAdder bytesReceived = new LongAdder();
+
   // max number of connections ever reached
-  public LongAdder MaxConn = new LongAdder();
+  public LongAdder maxConnections = new LongAdder();
+
   // accumulated active open connections
-  public LongAdder ActiveOpens = new LongAdder();
+  public LongAdder activeOpenConnections = new LongAdder();
+
   // accumulated passive open connections
-  public LongAdder PassiveOpens = new LongAdder();
+  public LongAdder passiveOpenConnections = new LongAdder();
+
   // current number of established connections
-  public LongAdder CurrEstab = new LongAdder();
+  public LongAdder currentEstablishedConnections = new LongAdder();
+
   // UDP read errors reported from net.PacketConn
-  public LongAdder InErrs = new LongAdder();
+  public LongAdder incomingErrors = new LongAdder();
+
   // checksum errors from CRC32
-  public LongAdder InCsumErrors = new LongAdder();
-  // packet iput errors reported from KCP
-  public LongAdder KCPInErrors = new LongAdder();
+  public LongAdder incomingChecksumErrors = new LongAdder();
+
+  // packet input errors reported from KCP
+  public LongAdder kcpInErrors = new LongAdder();
+
   // incoming packets count
-  public LongAdder InPkts = new LongAdder();
+  public LongAdder incomingPackets = new LongAdder();
+
   // outgoing packets count
-  public LongAdder OutPkts = new LongAdder();
+  public LongAdder outgoingPackets = new LongAdder();
+
   // incoming KCP segments
-  public LongAdder InSegs = new LongAdder();
+  public LongAdder incomingSegments = new LongAdder();
+
   // outgoing KCP segments
-  public LongAdder OutSegs = new LongAdder();
+  public LongAdder outgoingSegments = new LongAdder();
+
   // UDP bytes received
-  public LongAdder InBytes = new LongAdder();
+  public LongAdder incomingBytes = new LongAdder();
+
   // UDP bytes sent
-  public LongAdder OutBytes = new LongAdder();
-  // accmulated retransmited segments
-  public LongAdder RetransSegs = new LongAdder();
-  // accmulated fast retransmitted segments
-  public LongAdder FastRetransSegs = new LongAdder();
-  // accmulated early retransmitted segments
-  public LongAdder EarlyRetransSegs = new LongAdder();
-  // number of segs infered as lost
-  public LongAdder LostSegs = new LongAdder();
+  public LongAdder outgoingBytes = new LongAdder();
+
+  // accumulated retransmitted segments
+  public LongAdder retransmittedSegments = new LongAdder();
+
+  // accumulated fast retransmitted segments
+  public LongAdder fastRetransmittedSegments = new LongAdder();
+
+  // accumulated early retransmitted segments
+  public LongAdder earlyRetransmittedSegments = new LongAdder();
+
+  // number of segs inferred as lost
+  public LongAdder lostSegments = new LongAdder();
+
   // number of segs duplicated
-  public LongAdder RepeatSegs = new LongAdder();
+  public LongAdder repeatedSegments = new LongAdder();
+
   // correct packets recovered from FEC
-  public LongAdder FECRecovered = new LongAdder();
+  public LongAdder fecRecoveredPackets = new LongAdder();
+
   // incorrect packets recovered from FEC
-  public LongAdder FECErrs = new LongAdder();
+  public LongAdder fecErrorPackets = new LongAdder();
+
   // 收到的 Data数量
-  public LongAdder FECDataShards = new LongAdder();
+  public LongAdder fecDataShards = new LongAdder();
+
   // 收到的 Parity数量
-  public LongAdder FECParityShards = new LongAdder();
+  public LongAdder fecParityShards = new LongAdder();
+
   // number of data shards that's not enough for recovery
-  public LongAdder FECShortShards = new LongAdder();
+  public LongAdder fecShortShards = new LongAdder();
+
   // number of data shards that's not enough for recovery
-  public LongAdder FECRepeatDataShards = new LongAdder();
+  public LongAdder fecRepeatDataShards = new LongAdder();
 
   public static Snmp getSnmp() {
     return snmp;
@@ -71,243 +97,242 @@ public class Snmp {
   }
 
   public LongAdder getBytesSent() {
-    return BytesSent;
+    return bytesSent;
   }
 
   public void setBytesSent(LongAdder bytesSent) {
-    BytesSent = bytesSent;
+    this.bytesSent = bytesSent;
   }
 
   public LongAdder getBytesReceived() {
-    return BytesReceived;
+    return bytesReceived;
   }
 
   public void setBytesReceived(LongAdder bytesReceived) {
-    BytesReceived = bytesReceived;
+    this.bytesReceived = bytesReceived;
   }
 
-  public LongAdder getMaxConn() {
-    return MaxConn;
+  public LongAdder getMaxConnections() {
+    return maxConnections;
   }
 
-  public void setMaxConn(LongAdder maxConn) {
-    MaxConn = maxConn;
+  public void setMaxConnections(LongAdder maxConnections) {
+    this.maxConnections = maxConnections;
   }
 
-  public LongAdder getActiveOpens() {
-    return ActiveOpens;
+  public LongAdder getActiveOpenConnections() {
+    return activeOpenConnections;
   }
 
-  public void setActiveOpens(LongAdder activeOpens) {
-    ActiveOpens = activeOpens;
+  public void setActiveOpenConnections(LongAdder activeOpenConnections) {
+    this.activeOpenConnections = activeOpenConnections;
   }
 
-  public LongAdder getPassiveOpens() {
-    return PassiveOpens;
+  public LongAdder getPassiveOpenConnections() {
+    return passiveOpenConnections;
   }
 
-  public void setPassiveOpens(LongAdder passiveOpens) {
-    PassiveOpens = passiveOpens;
+  public void setPassiveOpenConnections(LongAdder passiveOpenConnections) {
+    this.passiveOpenConnections = passiveOpenConnections;
   }
 
-  public LongAdder getCurrEstab() {
-    return CurrEstab;
+  public LongAdder getCurrentEstablishedConnections() {
+    return currentEstablishedConnections;
   }
 
-  public void setCurrEstab(LongAdder currEstab) {
-    CurrEstab = currEstab;
+  public void setCurrentEstablishedConnections(LongAdder currentEstablishedConnections) {
+    this.currentEstablishedConnections = currentEstablishedConnections;
   }
 
-  public LongAdder getInErrs() {
-    return InErrs;
+  public LongAdder getIncomingErrors() {
+    return incomingErrors;
   }
 
-  public void setInErrs(LongAdder inErrs) {
-    InErrs = inErrs;
+  public void setIncomingErrors(LongAdder incomingErrors) {
+    this.incomingErrors = incomingErrors;
   }
 
-  public LongAdder getInCsumErrors() {
-    return InCsumErrors;
+  public LongAdder getIncomingChecksumErrors() {
+    return incomingChecksumErrors;
   }
 
-  public void setInCsumErrors(LongAdder inCsumErrors) {
-    InCsumErrors = inCsumErrors;
+  public void setIncomingChecksumErrors(LongAdder incomingChecksumErrors) {
+    this.incomingChecksumErrors = incomingChecksumErrors;
   }
 
-  public LongAdder getKCPInErrors() {
-    return KCPInErrors;
+  public LongAdder getKcpInErrors() {
+    return kcpInErrors;
   }
 
-  public void setKCPInErrors(LongAdder KCPInErrors) {
-    this.KCPInErrors = KCPInErrors;
+  public void setKcpInErrors(LongAdder kcpInErrors) {
+    this.kcpInErrors = kcpInErrors;
   }
 
-  public LongAdder getInPkts() {
-    return InPkts;
+  public LongAdder getIncomingPackets() {
+    return incomingPackets;
   }
 
-  public void setInPkts(LongAdder inPkts) {
-    InPkts = inPkts;
+  public void setIncomingPackets(LongAdder incomingPackets) {
+    this.incomingPackets = incomingPackets;
   }
 
-  public LongAdder getOutPkts() {
-    return OutPkts;
+  public LongAdder getOutgoingPackets() {
+    return outgoingPackets;
   }
 
-  public void setOutPkts(LongAdder outPkts) {
-    OutPkts = outPkts;
+  public void setOutgoingPackets(LongAdder outgoingPackets) {
+    this.outgoingPackets = outgoingPackets;
   }
 
-  public LongAdder getInSegs() {
-    return InSegs;
+  public LongAdder getIncomingSegments() {
+    return incomingSegments;
   }
 
-  public void setInSegs(LongAdder inSegs) {
-    InSegs = inSegs;
+  public void setIncomingSegments(LongAdder incomingSegments) {
+    this.incomingSegments = incomingSegments;
   }
 
-  public LongAdder getOutSegs() {
-    return OutSegs;
+  public LongAdder getOutgoingSegments() {
+    return outgoingSegments;
   }
 
-  public void setOutSegs(LongAdder outSegs) {
-    OutSegs = outSegs;
+  public void setOutgoingSegments(LongAdder outgoingSegments) {
+    this.outgoingSegments = outgoingSegments;
   }
 
-  public LongAdder getInBytes() {
-    return InBytes;
+  public LongAdder getIncomingBytes() {
+    return incomingBytes;
   }
 
-  public void setInBytes(LongAdder inBytes) {
-    InBytes = inBytes;
+  public void setIncomingBytes(LongAdder incomingBytes) {
+    this.incomingBytes = incomingBytes;
   }
 
-  public LongAdder getOutBytes() {
-    return OutBytes;
+  public LongAdder getOutgoingBytes() {
+    return outgoingBytes;
   }
 
-  public void setOutBytes(LongAdder outBytes) {
-    OutBytes = outBytes;
+  public void setOutgoingBytes(LongAdder outgoingBytes) {
+    this.outgoingBytes = outgoingBytes;
   }
 
-  public LongAdder getRetransSegs() {
-    return RetransSegs;
+  public LongAdder getRetransmittedSegments() {
+    return retransmittedSegments;
   }
 
-  public void setRetransSegs(LongAdder retransSegs) {
-    RetransSegs = retransSegs;
+  public void setRetransmittedSegments(LongAdder retransmittedSegments) {
+    this.retransmittedSegments = retransmittedSegments;
   }
 
-  public LongAdder getFastRetransSegs() {
-    return FastRetransSegs;
+  public LongAdder getFastRetransmittedSegments() {
+    return fastRetransmittedSegments;
   }
 
-  public void setFastRetransSegs(LongAdder fastRetransSegs) {
-    FastRetransSegs = fastRetransSegs;
+  public void setFastRetransmittedSegments(LongAdder fastRetransmittedSegments) {
+    this.fastRetransmittedSegments = fastRetransmittedSegments;
   }
 
-  public LongAdder getEarlyRetransSegs() {
-    return EarlyRetransSegs;
+  public LongAdder getEarlyRetransmittedSegments() {
+    return earlyRetransmittedSegments;
   }
 
-  public void setEarlyRetransSegs(LongAdder earlyRetransSegs) {
-    EarlyRetransSegs = earlyRetransSegs;
+  public void setEarlyRetransmittedSegments(LongAdder earlyRetransmittedSegments) {
+    this.earlyRetransmittedSegments = earlyRetransmittedSegments;
   }
 
-  public LongAdder getLostSegs() {
-    return LostSegs;
+  public LongAdder getLostSegments() {
+    return lostSegments;
   }
 
-  public void setLostSegs(LongAdder lostSegs) {
-    LostSegs = lostSegs;
+  public void setLostSegments(LongAdder lostSegments) {
+    this.lostSegments = lostSegments;
   }
 
-  public LongAdder getRepeatSegs() {
-    return RepeatSegs;
+  public LongAdder getRepeatedSegments() {
+    return repeatedSegments;
   }
 
-  public void setRepeatSegs(LongAdder repeatSegs) {
-    RepeatSegs = repeatSegs;
+  public void setRepeatedSegments(LongAdder repeatedSegments) {
+    this.repeatedSegments = repeatedSegments;
   }
 
-  public LongAdder getFECRecovered() {
-    return FECRecovered;
+  public LongAdder getFecRecoveredPackets() {
+    return fecRecoveredPackets;
   }
 
-  public void setFECRecovered(LongAdder FECRecovered) {
-    this.FECRecovered = FECRecovered;
+  public void setFecRecoveredPackets(LongAdder fecRecoveredPackets) {
+    this.fecRecoveredPackets = fecRecoveredPackets;
   }
 
-  public LongAdder getFECErrs() {
-    return FECErrs;
+  public LongAdder getFecErrorPackets() {
+    return fecErrorPackets;
   }
 
-  public void setFECErrs(LongAdder FECErrs) {
-    this.FECErrs = FECErrs;
+  public void setFecErrorPackets(LongAdder fecErrorPackets) {
+    this.fecErrorPackets = fecErrorPackets;
   }
 
-  public LongAdder getFECDataShards() {
-    return FECDataShards;
+  public LongAdder getFecDataShards() {
+    return fecDataShards;
   }
 
-  public void setFECDataShards(LongAdder FECDataShards) {
-    this.FECDataShards = FECDataShards;
+  public void setFecDataShards(LongAdder fecDataShards) {
+    this.fecDataShards = fecDataShards;
   }
 
-  public LongAdder getFECParityShards() {
-    return FECParityShards;
+  public LongAdder getFecParityShards() {
+    return fecParityShards;
   }
 
-  public void setFECParityShards(LongAdder FECParityShards) {
-    this.FECParityShards = FECParityShards;
+  public void setFecParityShards(LongAdder fecParityShards) {
+    this.fecParityShards = fecParityShards;
   }
 
-  public LongAdder getFECShortShards() {
-    return FECShortShards;
+  public LongAdder getFecShortShards() {
+    return fecShortShards;
   }
 
-  public void setFECShortShards(LongAdder FECShortShards) {
-    this.FECShortShards = FECShortShards;
+  public void setFecShortShards(LongAdder fecShortShards) {
+    this.fecShortShards = fecShortShards;
   }
 
-  public LongAdder getFECRepeatDataShards() {
-    return FECRepeatDataShards;
+  public LongAdder getFecRepeatDataShards() {
+    return fecRepeatDataShards;
   }
 
-  public void setFECRepeatDataShards(LongAdder FECRepeatDataShards) {
-    this.FECRepeatDataShards = FECRepeatDataShards;
+  public void setFecRepeatDataShards(LongAdder fecRepeatDataShards) {
+    this.fecRepeatDataShards = fecRepeatDataShards;
   }
 
   @Override
   public String toString() {
     return "Snmp{" +
-           "BytesSent=" + BytesSent +
-           ", BytesReceived=" + BytesReceived +
-           ", MaxConn=" + MaxConn +
-           ", ActiveOpens=" + ActiveOpens +
-           ", PassiveOpens=" + PassiveOpens +
-           ", CurrEstab=" + CurrEstab +
-           ", InErrs=" + InErrs +
-           ", InCsumErrors=" + InCsumErrors +
-           ", KCPInErrors=" + KCPInErrors +
-           ", 收到包=" + InPkts +
-           ", 发送包=" + OutPkts +
-           ", InSegs=" + InSegs +
-           ", OutSegs=" + OutSegs +
-           ", 收到字节=" + InBytes +
-           ", 发送字节=" + OutBytes +
-           ", 总共重发数=" + RetransSegs +
-           ", 快速重发数=" + FastRetransSegs +
-           ", 空闲快速重发数=" + EarlyRetransSegs +
-           ", 超时重发数=" + LostSegs +
-           ", 收到重复包数量=" + RepeatSegs +
-           ", fec恢复数=" + FECRecovered +
-           ", fec恢复错误数=" + FECErrs +
-           ", 收到fecData数=" + FECDataShards +
-           ", 收到fecParity数=" + FECParityShards +
-           ", fec缓存冗余淘汰data包数=" + FECShortShards +
-           ", fec收到重复的数据包=" + FECRepeatDataShards +
+           "bytesSent=" + bytesSent +
+           ", bytesReceived=" + bytesReceived +
+           ", maxConnections=" + maxConnections +
+           ", activeOpenConnections=" + activeOpenConnections +
+           ", passiveOpenConnections=" + passiveOpenConnections +
+           ", currentEstablishedConnections=" + currentEstablishedConnections +
+           ", incomingErrors=" + incomingErrors +
+           ", incomingChecksumErrors=" + incomingChecksumErrors +
+           ", kcpInErrors=" + kcpInErrors +
+           ", incomingPackets=" + incomingPackets +
+           ", outgoingPackets=" + outgoingPackets +
+           ", incomingSegments=" + incomingSegments +
+           ", outgoingSegments=" + outgoingSegments +
+           ", incomingBytes=" + incomingBytes +
+           ", outgoingBytes=" + outgoingBytes +
+           ", retransmittedSegments=" + retransmittedSegments +
+           ", fastRetransmittedSegments=" + fastRetransmittedSegments +
+           ", earlyRetransmittedSegments=" + earlyRetransmittedSegments +
+           ", lostSegments=" + lostSegments +
+           ", repeatedSegments=" + repeatedSegments +
+           ", fecRecoveredPackets=" + fecRecoveredPackets +
+           ", fecErrorPackets=" + fecErrorPackets +
+           ", fecDataShards=" + fecDataShards +
+           ", fecParityShards=" + fecParityShards +
+           ", fecShortShards=" + fecShortShards +
+           ", fecRepeatDataShards=" + fecRepeatDataShards +
            '}';
   }
-
 }

@@ -305,7 +305,7 @@ public class LatencySimulator {
     String[] names = new String[]{"default", "normal", "fast"};
     System.out.format("%s mode result (%dms): \n", names[mode], ts1);
     System.out.format("avgrtt=%d maxrtt=%d \n", (int) (sumrtt / count), maxrtt);
-    System.out.println("lost percent: " + (Snmp.snmp.RetransSegs.doubleValue()));
+    System.out.println("lost percent: " + (Snmp.snmp.retransmittedSegments.doubleValue()));
     System.out.println("snmp: " + (Snmp.snmp.toString()));
   }
 

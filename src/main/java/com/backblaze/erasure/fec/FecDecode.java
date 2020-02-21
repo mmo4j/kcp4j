@@ -120,16 +120,16 @@ public class FecDecode {
    */
   public List<ByteBuf> decode(FecPacket pkt) {
     if (pkt.getFlag() == Fec.typeParity) {
-      Snmp.snmp.FECParityShards.increment();
+      Snmp.snmp.fecParityShards.increment();
     } else {
-      Snmp.snmp.FECDataShards.increment();
+      Snmp.snmp.fecDataShards.increment();
     }
     int n = rx.size() - 1;
     int insertIdx = 0;
     for (int i = n; i >= 0; i--) {
       //去重
       if (pkt.getSeqid() == rx.get(i).getSeqid()) {
-        Snmp.snmp.FECRepeatDataShards.increment();
+        Snmp.snmp.fecRepeatDataShards.increment();
         pkt.release();
         return null;
       }
@@ -241,16 +241,16 @@ public class FecDecode {
             for (byte aByte : bytes) {
               System.out.print("[" + aByte + "] ");
             }
-            Snmp.snmp.FECErrs.increment();
+            Snmp.snmp.fecErrorPackets.increment();
           } else {
-            Snmp.snmp.FECRecovered.increment();
+            Snmp.snmp.fecRecoveredPackets.increment();
           }
           //去除fec头标记的消息体长度2字段
           byteBufs = byteBufs.slice(Fec.fecDataSize, packageSize);
           //int packageSize =byteBufs.readUnsignedShort();
           //byteBufs = byteBufs.slice(0,packageSize);
           result.add(byteBufs);
-          Snmp.snmp.FECRecovered.increment();
+          Snmp.snmp.fecRecoveredPackets.increment();
           //int packageSize =byteBufs.getUnsignedShort(0);
           ////判断长度
           //if(byteBufs.writerIndex()-Fec.fecHeaderSizePlus2>=packageSize&&packageSize>0)
@@ -273,7 +273,7 @@ public class FecDecode {
     }
     if (rx.size() > rxlimit) {
       if (rx.get(0).getFlag() == Fec.typeData) {
-        Snmp.snmp.FECShortShards.increment();
+        Snmp.snmp.fecShortShards.increment();
       }
       freeRange(0, 1, rx);
     }

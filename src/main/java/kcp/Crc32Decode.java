@@ -28,7 +28,7 @@ public class Crc32Decode extends ChannelInboundHandlerAdapter {
       crc32.reset();
       crc32.update(byteBuffer);
       if (checksum != crc32.getValue()) {
-        Snmp.snmp.getInCsumErrors().increment();
+        Snmp.snmp.getIncomingChecksumErrors().increment();
         return;
       }
     }
