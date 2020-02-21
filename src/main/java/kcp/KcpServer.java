@@ -1,7 +1,6 @@
 package kcp;
 
 import com.backblaze.erasure.fec.Fec;
-import com.backblaze.erasure.fec.Snmp;
 
 import java.util.List;
 import java.util.Vector;
@@ -11,6 +10,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelOutboundInvoker;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.Epoll;
@@ -42,8 +42,12 @@ public class KcpServer {
     init(disruptorExecutorPool, kcpListener, channelConfig, ports);
   }
 
-  public void init(DisruptorExecutorPool disruptorExecutorPool, KcpListener kcpListener, ChannelConfig channelConfig,
-                   int... ports) {
+  public void init(
+    DisruptorExecutorPool disruptorExecutorPool,
+    KcpListener kcpListener,
+    ChannelConfig channelConfig,
+    int... ports
+  ) {
     //自动获取conv时 conv应该为0
     if (channelConfig.isAutoSetConv()) {
       channelConfig.setConv(0);
@@ -105,22 +109,17 @@ public class KcpServer {
       }
     }
 
-    Runtime.getRuntime().addShutdownHook(new Thread(() -> stop()));
+    Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
   }
 
   public void stop() {
-    localAddresss.forEach(
-      channel -> channel.close()
-    );
-    channelManager.getAll().forEach(ukcp ->
-                                      ukcp.notifyCloseEvent());
+    localAddresss.forEach(ChannelOutboundInvoker::close);
+    channelManager.getAll().forEach(Ukcp::notifyCloseEvent);
     if (disruptorExecutorPool != null) {
       disruptorExecutorPool.stop();
     }
     if (group != null) {
       group.shutdownGracefully();
     }
-    System.out.println(Snmp.snmp);
   }
-
 }

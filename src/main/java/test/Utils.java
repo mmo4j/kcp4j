@@ -17,7 +17,5 @@ public class Utils {
     }
     System.out.println();
     System.err.println("-------" + log + " end -------------");
-
-
   }
 }

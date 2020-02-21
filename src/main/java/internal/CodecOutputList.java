@@ -26,6 +26,7 @@ public class CodecOutputList<T> extends AbstractList<T> implements RandomAccess 
   // Size of 16 should be good enough for 99 % of all users.
   private Object[] array = new Object[16];
   private boolean insertSinceRecycled;
+
   private CodecOutputList(Recycler.Handle<CodecOutputList<T>> handle) {
     this.handle = handle;
   }

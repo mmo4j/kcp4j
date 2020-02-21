@@ -101,11 +101,11 @@ public class FecDecode {
       }
       q.set(i, q.get(index));
     }
-    int removeIndex = q.size() - n;
+
     for (int i = 0; i < n; i++) {
       q.remove(q.size() - 1);
     }
-    System.out.println();
+//    System.out.println();
   }
 
   /**
@@ -235,7 +235,7 @@ public class FecDecode {
 
           int packageSize = byteBufs.readShort();
           if (byteBufs.readableBytes() < packageSize) {
-            System.out.println("bytebuf长度: " + byteBufs.writerIndex() + " 读出长度" + packageSize);
+//            System.out.println("bytebuf长度: " + byteBufs.writerIndex() + " 读出长度" + packageSize);
             byte[] bytes = new byte[byteBufs.writerIndex()];
             byteBufs.getBytes(0, bytes);
             for (byte aByte : bytes) {
