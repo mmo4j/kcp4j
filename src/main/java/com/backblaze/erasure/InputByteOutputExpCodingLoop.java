@@ -11,10 +11,13 @@ public class InputByteOutputExpCodingLoop extends CodingLoopBase {
   @Override
   public void codeSomeShards(
     byte[][] matrixRows,
-    byte[][] inputs, int inputCount,
-    byte[][] outputs, int outputCount,
-    int offset, int byteCount) {
-
+    byte[][] inputs,
+    int inputCount,
+    byte[][] outputs,
+    int outputCount,
+    int offset,
+    int byteCount
+  ) {
     {
       final int iInput = 0;
       final byte[] inputShard = inputs[iInput];
@@ -40,5 +43,4 @@ public class InputByteOutputExpCodingLoop extends CodingLoopBase {
       }
     }
   }
-
 }

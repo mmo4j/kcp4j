@@ -161,11 +161,8 @@ public class Ukcp {
    */
   void send(ByteBuf buf) throws IOException {
     int ret = kcp.send(buf);
-    switch (ret) {
-      case -2:
-        throw new IOException("Too many fragments");
-      default:
-        break;
+    if (ret == -2) {
+      throw new IOException("Too many fragments");
     }
   }
 
@@ -450,7 +447,7 @@ public class Ukcp {
    * 主动关闭连接调用
    */
   public void notifyCloseEvent() {
-    this.iMessageExecutor.execute(() -> close());
+    this.iMessageExecutor.execute(this::close);
   }
 
   private void notifyReadEvent() {
