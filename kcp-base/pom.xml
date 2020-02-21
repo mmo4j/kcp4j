@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.mmo4j</groupId>
-    <artifactId>kcp-kotlin</artifactId>
+    <artifactId>kcp-java</artifactId>
     <version>0.1-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
