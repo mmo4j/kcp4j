@@ -1,7 +1,7 @@
 package kcp;
 
-import com.mmo4j.kcp.fec.fec.Fec;
-import com.mmo4j.kcp.fec.fec.Snmp;
+import com.backblaze.erasure.fec.Fec;
+import com.backblaze.erasure.fec.Snmp;
 
 import java.util.List;
 import java.util.Vector;

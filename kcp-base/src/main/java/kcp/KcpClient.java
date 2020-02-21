@@ -1,7 +1,7 @@
 package kcp;
 
-import com.mmo4j.kcp.fec.ReedSolomon;
-import com.mmo4j.kcp.fec.fec.Fec;
+import com.backblaze.erasure.ReedSolomon;
+import com.backblaze.erasure.fec.Fec;
 
 import java.net.InetSocketAddress;
 
