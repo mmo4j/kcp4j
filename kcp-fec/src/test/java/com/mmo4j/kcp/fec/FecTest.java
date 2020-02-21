@@ -1,4 +1,4 @@
-package com.backblaze.erasure;
+package com.mmo4j.kcp.fec;
 
 import com.mmo4j.kcp.fec.ReedSolomon;
 import com.mmo4j.kcp.fec.fec.Fec;
