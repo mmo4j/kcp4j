@@ -4,7 +4,7 @@
  * Copyright 2015, Backblaze, Inc.  All rights reserved.
  */
 
-package com.mmo4j.kcp.fec;
+package com.backblaze.erasure;
 
 public class MatrixTest {
 

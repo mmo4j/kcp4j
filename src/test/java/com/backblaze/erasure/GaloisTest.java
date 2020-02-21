@@ -3,7 +3,7 @@
  *
  * Copyright 2015, Backblaze, Inc.
  */
-package com.mmo4j.kcp.fec;
+package com.backblaze.erasure;
 
 /**
  * This is a totally paranoid test that ensure that the Galois class
