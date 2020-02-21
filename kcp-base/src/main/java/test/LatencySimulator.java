@@ -1,6 +1,6 @@
 package test;
 
-import com.backblaze.erasure.fec.Snmp;
+import com.mmo4j.kcp.fec.fec.Snmp;
 
 import java.util.Iterator;
 import java.util.LinkedList;

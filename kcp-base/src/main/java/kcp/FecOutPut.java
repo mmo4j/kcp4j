@@ -1,6 +1,6 @@
 package kcp;
 
-import com.backblaze.erasure.fec.FecEncode;
+import com.mmo4j.kcp.fec.fec.FecEncode;
 
 import io.netty.buffer.ByteBuf;
 

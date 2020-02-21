@@ -1,6 +1,6 @@
 package kcp;
 
-import com.backblaze.erasure.ReedSolomon;
+import com.mmo4j.kcp.fec.ReedSolomon;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

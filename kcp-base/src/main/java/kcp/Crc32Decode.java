@@ -1,6 +1,6 @@
 package kcp;
 
-import com.backblaze.erasure.fec.Snmp;
+import com.mmo4j.kcp.fec.fec.Snmp;
 
 import java.nio.ByteBuffer;
 import java.util.zip.CRC32;

@@ -1,6 +1,6 @@
 package kcp;
 
-import com.backblaze.erasure.fec.Snmp;
+import com.mmo4j.kcp.fec.fec.Snmp;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.socket.DatagramPacket;

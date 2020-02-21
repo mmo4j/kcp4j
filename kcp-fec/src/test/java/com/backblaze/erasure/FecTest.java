@@ -1,10 +1,11 @@
 package com.backblaze.erasure;
 
-import com.backblaze.erasure.fec.Fec;
-import com.backblaze.erasure.fec.FecDecode;
-import com.backblaze.erasure.fec.FecEncode;
-import com.backblaze.erasure.fec.FecPacket;
-import com.backblaze.erasure.fec.Snmp;
+import com.mmo4j.kcp.fec.ReedSolomon;
+import com.mmo4j.kcp.fec.fec.Fec;
+import com.mmo4j.kcp.fec.fec.FecDecode;
+import com.mmo4j.kcp.fec.fec.FecEncode;
+import com.mmo4j.kcp.fec.fec.FecPacket;
+import com.mmo4j.kcp.fec.fec.Snmp;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
